@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 const toDoFetch=()=>{
-const [toDoList,setToDoList]=useState(["Prepare my Bags"]);
+const [toDoList,setToDoList]=useState(["Prepare my Bags", "Clean my room","Say Good bye to the dogs", "Go to Girona"]);
 const {input,setInput}=useState("");
+function addToDo (){
+    setToDoList(toDoList.concat(input));
+}
 const handleSubmit=(e)=>{
     e.preventDefault();
     if(input != ""){
@@ -20,9 +23,13 @@ return (
             <h1>Deucalino´s to Dos</h1>
          </div>
          <form >
-         <input  onChange={(e) => { setInput(e.target.value) }}  type="text" value={input} className="form-control" placeholder="Write here your To Do"/>
-         <button onSubmit={handleSubmit} type="button" class="btn btn-success"> <i className="fa-solid fa-calendar-plus"></i></button>
-    <ul className="list-group">
+         <div className="input-group mb-3">
+  <input onChange={event => { setInput(event.target.value) }}  value={input}  onSubmit={handleSubmit} type="text" className="form-control" placeholder="Write your task"/>
+  <button onClick={addToDo} type="button" class="btn btn-success"> <i className="fa-solid fa-calendar-plus"></i></button>
+</div>
+       
+     <div  className="p-3 mb-2 bg-primary">
+     <ul className="list-group">
         {toDoList.map((toDo,index)=>(
             <li key={index} className="list-group-item d-flex justify-content-between">
                 <div class="alert alert-info" role="alert">
@@ -34,6 +41,8 @@ return (
             </li>
         ))}
     </ul>
+    </div>   
+   
     </form>
     </div>  
  );

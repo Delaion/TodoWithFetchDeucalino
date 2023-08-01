@@ -1,20 +1,21 @@
+
 import React, { useState } from "react";
 const toDoFetch=()=>{
 const [toDoList,setToDoList]=useState(["Prepare my Bags", "Clean my room","Say Good bye to the dogs", "Go to Girona"]);
-const {input,setInput}=useState("");
+const [input,setInput]=useState("");
 function addToDo (){
     setToDoList(toDoList.concat(input));
 }
 const handleSubmit=(e)=>{
     e.preventDefault();
-    if(input != ""){
-        setToDoList({...toDoList,input});
+    if(input !== ""){
+        setToDoList({...toDoList, input});
         setInput("");
     }
 };
 const deleteToDo=(i)=>{
     setToDoList(toDoList.filter((_,index)=>{
-        return index !=i
+        return index !== i
     }))
 }
 return (
